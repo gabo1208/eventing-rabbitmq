@@ -28,6 +28,7 @@ jobs:
         - v0.23.0
 
         rabbitmq-operator-version:
+        - v1.7.0
         - v1.8.1
 
         rabbitmq-messaging-topology-operator-version:
