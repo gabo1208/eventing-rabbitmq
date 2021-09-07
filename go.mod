@@ -21,7 +21,6 @@ require (
 	github.com/rabbitmq/amqp091-go v0.0.0-20210823000215-c428a6150891
 	github.com/rabbitmq/cluster-operator v1.6.0
 	github.com/rabbitmq/messaging-topology-operator v0.8.0
-	github.com/streadway/amqp v0.0.0-20200108173154-1c71cc93ed71
 	github.com/testcontainers/testcontainers-go v0.7.0
 	github.com/tiago4orion/conjure v0.0.0-20150908101743-93cb30b9d218
 	go.uber.org/zap v1.19.0
