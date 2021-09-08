@@ -16,21 +16,28 @@ Gabriel
 1. [Introduction](#1-introduction)
 
 - 1.1. [Conformance](#11-conformance)
-- 1.2. [Relation to AMQP 0-9-1](#12-relation-to-amqp091)
+- 1.2. [Relation to AMQP 0-9-1](#12-relation-to-amqp-0-9-1)
 - 1.3. [Content Modes](#13-content-modes)
 - 1.4. [Event Formats](#14-event-formats)
 - 1.5. [Security](#15-security)
 
 2. [Use of CloudEvents Attributes](#2-use-of-cloudevents-attributes)
 
-- 2.1. [datacontenttype Attribute](#21-datacontenttype-attribute)
-- 2.2. [data](#22-data)
-
-3. [AMQP 0-9-1 Message Mapping](#3-amqp091-message-mapping)
+3. [AMQP 0-9-1 Message Mapping](#3-amqp-0-9-1-message-mapping)
 
 - 3.1. [Binary Content Mode](#31-binary-content-mode)
+- 3.1.1. [AMQP content-type](#311-amqp-content-type)
+- 3.1.2. [Event Data Encoding](#312-event-data-encoding)
+- 3.1.3. [Metadata Headers](#313-metadata-headers)
+- 3.1.3.1. [AMQP Application Property Names](#3131-amqp-0-9-1-application-property-names)
+- 3.1.3.2. [AMQP Application Property Values](#3132-amqp-0-9-1-application-property-values)
+- 3.1.4. [Examples](#324-examples)
+
 - 3.2. [Structured Content Mode](#32-structured-content-mode)
-- 3.3. [Batched Content Mode](#33-batched-content-mode)
+- 3.2.1. [AMQP content-type](#321-amqp-content-type)
+- 3.2.2. [Event Data Encoding](#322-event-data-encoding)
+- 3.2.3. [Metadata Headers](#323-metadata-headers)
+- 3.2.4. [Examples](#324-examples)
 
 4. [References](#4-references)
 
