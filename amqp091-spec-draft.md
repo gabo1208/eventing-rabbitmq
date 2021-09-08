@@ -2,7 +2,7 @@
 
 ## Abstract
 
-The HTTP AMQP 0-9-1 Binding for CloudEvents defines how events are mapped to AMQP 0-9-1 messaging protocol.
+The AMQP 0-9-1 Binding for CloudEvents defines how events are mapped to AMQP 0-9-1 messaging protocol.
 
 ## Status of this document
 
@@ -38,7 +38,7 @@ Gabriel
 
 [CloudEvents][ce] is a standardized and protocol-agnostic definition of the
 structure and metadata description of events. This specification defines how the
-elements defined in the CloudEvents specification are to be used in [AMQP 0-9-1](https://www.rabbitmq.com/resources/specs/amqp0-9-1.pdf) requests and response messages and it acts as a compatibility complement for the [AMQP1.0 Spec][amqp1].
+elements defined in the CloudEvents specification are to be used in [AMQP 0-9-1][amqp091] requests and response messages and it acts as a compatibility complement for the [AMQP1.0 Spec][amqp1].
 
 ### 1.1. Conformance
 
@@ -53,7 +53,7 @@ This specification does not prescribe rules constraining transfer or settlement 
 AMQP-based messaging and eventing infrastructures often provide higher-level programming-level abstractions that do not expose all AMQP protocol elements, or map AMQP protocol elements or names to proprietary constructs. This specification uses AMQP terminology, and implementers can refer to the respective infrastructure's AMQP documentation to determine the mapping into a programming-level abstraction.
 
 This specification assumes use of the default AMQP 0-9-1 [message
-Format (Section 4.2.3 General Frame Format)](https://www.rabbitmq.com/resources/specs/amqp0-9-1.pdf).
+Format Section 4.2.3][amqp091].
 
 
 
@@ -65,7 +65,7 @@ support the _structured_ and _binary_ modes.
 
 In the _structured_ content mode, event metadata attributes and event data are
 placed into the AMQP 0-9-1 message's content body section using an
-event format as defined in the CloudEvents [spec][https://github.com/cloudevents/spec/blob/master/spec.md].
+event format as defined in the CloudEvents [spec][ce].
 
 In the _binary_ content mode, the value of the event `data` is placed into the
 AMQP 0-9-1 message's content body section as-is, with the `datacontenttype`
@@ -141,14 +141,14 @@ the CloudEvents `datacontenttype` attribute.
 #### 3.1.2. Event Data Encoding
 
 Event data is assumed to contain opaque application data that is encoded as declared by the datacontenttype attribute.
-An application is free to hold the information in any in-memory representation of its choosing, but as it is transposed into AMQP 0-9-1 as defined in this specification, the assumption is that the event data is made available as a sequence of bytes. The byte sequence is used as the [AMQP 0-9-1][Section 3.1.1 amqp091 spec] section.
+An application is free to hold the information in any in-memory representation of its choosing, but as it is transposed into AMQP 0-9-1 as defined in this specification, the assumption is that the event data is made available as a sequence of bytes. The byte sequence is used as the [AMQP 0-9-1 Section 3.1.1][amqp091] section.
 Example:
 If the declared datacontenttype is application/json;charset=utf-8, the expectation is that the event data is made available as [UTF-8][rfc3629] encoded JSON text for use in AMQP 0-9-1.
 
 
 #### 3.1.3. Metadata Headers
 
-All [CloudEvents][ce] attributes with exception of datacontenttype MUST be individually mapped to and from the [AMQP 0-9-1][section 3.1 amqp091 spec] section.
+All [CloudEvents][ce] attributes with exception of datacontenttype MUST be individually mapped to and from the [AMQP 0-9-1 section 3.1][amqp091] section.
 CloudEvents extensions that define their own attributes MAY define a secondary mapping to AMQP 0-9-1 properties for those attributes, also in different message sections, especially if specific attributes or their names need to align with AMQP 0-9-1 features or with other specifications that have explicit AMQP 0-9-1 header bindings. However, they MUST also include the previously defined primary mapping.
 An extension specification that defines a secondary mapping rule for AMQP 0-9-1, and any revision of such a specification, MUST also define explicit mapping rules for all other protocol bindings that are part of the CloudEvents core at the time of the submission or revision.
 
@@ -171,7 +171,7 @@ Examples:
 The value for each AMQP 0-9-1 header is constructed from the respective attribute
 type's.
 
-The CloudEvents type system MUST be mapped to AMQP 0-9-1types as defined in the Data Fields Section [4.2.5 AMQP 0-9-1 Data Fields]
+The CloudEvents type system MUST be mapped to AMQP 0-9-1types as defined in the [Data Fields Section 4.2.5][amqp091]
 
 All attribute values in an AMQP 0-9-1 binary message MUST either be represented using
 the native AMQP 0-9-1 types above or the canonical string form.
@@ -186,7 +186,7 @@ An implementation
 #### 3.1.4 Examples
 
 This example shows the _binary_ mode mapping of an event into the [bare
-message][message-format] sections of AMQP:
+message Section 4.2.3][amqp091] sections of AMQP:
 
 ```text
 --------------- properties ------------------
@@ -234,8 +234,7 @@ The chosen [event format](#14-event-formats) defines how all attributes
 and `data` are represented.
 
 The event metadata and data is then rendered in accordance with the event format
-specification and the resulting data becomes the AMQP 0-9-1 application [data][data]
-section.
+specification and the resulting data becomes the AMQP 0-9-1 content body section.
 
 #### 3.2.3. Metadata Headers
 
@@ -298,6 +297,8 @@ content-type: application/cloudevents+json; charset=utf-8
 
 ## 4. References
 
+- [AMQP 1.0][amqp1] AMQP 1.0 protocol binding spec for Cloud Events
+- [AMQP 0-9-1][amqp091] AMQP 0-9-1 Spec document
 - [RFC2046][rfc2046] Multipurpose Internet Mail Extensions (MIME) Part Two:
   Media Types
 - [RFC2119][rfc2119] Key words for use in RFCs to Indicate Requirement Levels
@@ -309,6 +310,7 @@ content-type: application/cloudevents+json; charset=utf-8
   Format
 
 [amqp1]: https://github.com/cloudevents/spec/blob/master/amqp-protocol-binding.md
+[amqp091]: https://www.rabbitmq.com/resources/specs/amqp0-9-1.pdf
 [ce]: https://github.com/cloudevents/spec/blob/master/spec.md
 [json-format]: https://github.com/cloudevents/spec/blob/master/json-format.md
 [content-type]: https://tools.ietf.org/html/rfc7231#section-3.1.1.5
