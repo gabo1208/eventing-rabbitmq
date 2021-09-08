@@ -38,7 +38,7 @@ Gabriel
 
 [CloudEvents][ce] is a standardized and protocol-agnostic definition of the
 structure and metadata description of events. This specification defines how the
-elements defined in the CloudEvents specification are to be used in [AMQP 0-9-1](https://www.rabbitmq.com/resources/specs/amqp0-9-1.pdf) requests and response messages and it acts as a compatibility complement for the [AMQP1.0 Spec](https://github.com/cloudevents/spec/blob/master/amqp-protocol-binding.md).
+elements defined in the CloudEvents specification are to be used in [AMQP 0-9-1](https://www.rabbitmq.com/resources/specs/amqp0-9-1.pdf) requests and response messages and it acts as a compatibility complement for the [AMQP1.0 Spec][amqp1].
 
 ### 1.1. Conformance
 
@@ -308,6 +308,7 @@ content-type: application/cloudevents+json; charset=utf-8
 - [RFC7159][rfc7159] The JavaScript Object Notation (JSON) Data Interchange
   Format
 
+[amqp1]: https://github.com/cloudevents/spec/blob/master/amqp-protocol-binding.md
 [ce]: https://github.com/cloudevents/spec/blob/master/spec.md
 [json-format]: https://github.com/cloudevents/spec/blob/master/json-format.md
 [content-type]: https://tools.ietf.org/html/rfc7231#section-3.1.1.5
@@ -318,3 +319,5 @@ content-type: application/cloudevents+json; charset=utf-8
 [rfc4627]: https://tools.ietf.org/html/rfc4627
 [rfc6839]: https://tools.ietf.org/html/rfc6839
 [rfc7159]: https://tools.ietf.org/html/rfc7159
+
+
