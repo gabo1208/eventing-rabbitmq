@@ -71,7 +71,7 @@ In the _binary_ content mode, the value of the event `data` is placed into the
 AMQP 0-9-1 message's content body section as-is, with the `datacontenttype`
 attribute value declaring its media type mapped to the AMQP 0-9-1
 `content-type` message property; all other event attributes are mapped to the
-AMQP 0-9-1 [headers] section.
+[AMQP 0-9-1 headers Section 4.2.3][amqp091].
 
 ### 1.4. Event Formats
 
@@ -148,7 +148,7 @@ If the declared datacontenttype is application/json;charset=utf-8, the expectati
 
 #### 3.1.3. Metadata Headers
 
-All [CloudEvents][ce] attributes with exception of datacontenttype MUST be individually mapped to and from the [AMQP 0-9-1 section 3.1][amqp091] section.
+All [CloudEvents][ce] attributes with exception of datacontenttype MUST be individually mapped to and from the [AMQP 0-9-1 Section 3.1][amqp091] section.
 CloudEvents extensions that define their own attributes MAY define a secondary mapping to AMQP 0-9-1 properties for those attributes, also in different message sections, especially if specific attributes or their names need to align with AMQP 0-9-1 features or with other specifications that have explicit AMQP 0-9-1 header bindings. However, they MUST also include the previously defined primary mapping.
 An extension specification that defines a secondary mapping rule for AMQP 0-9-1, and any revision of such a specification, MUST also define explicit mapping rules for all other protocol bindings that are part of the CloudEvents core at the time of the submission or revision.
 
@@ -171,7 +171,7 @@ Examples:
 The value for each AMQP 0-9-1 header is constructed from the respective attribute
 type's.
 
-The CloudEvents type system MUST be mapped to AMQP 0-9-1types as defined in the [Data Fields Section 4.2.5][amqp091]
+The CloudEvents type system MUST be mapped to AMQP 0-9-1 types as defined in the [Data Fields Section 4.2.5][amqp091]
 
 All attribute values in an AMQP 0-9-1 binary message MUST either be represented using
 the native AMQP 0-9-1 types above or the canonical string form.
