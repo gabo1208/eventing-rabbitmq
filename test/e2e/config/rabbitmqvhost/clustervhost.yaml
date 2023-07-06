@@ -46,3 +46,10 @@ spec:
       default_permissions.write = .*
       loopback_users = none
       disk_free_limit.absolute = 50MB
+  {{ if .rabbitmqServerImage }}
+  image: {{ .rabbitmqServerImage }}
+  {{ end }}
+  {{ if .rabbitmqImagePullSecretName }}
+  imagePullSecrets:
+  - name: {{ .rabbitmqImagePullSecretName }}
+  {{ end }}
