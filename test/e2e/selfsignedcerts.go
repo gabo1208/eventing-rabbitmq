@@ -21,6 +21,7 @@ import (
 	"fmt"
 
 	v1 "k8s.io/api/core/v1"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/wait"
 	"knative.dev/eventing-rabbitmq/test/e2e/config/certsecret"
@@ -53,11 +54,27 @@ func CleanupSelfSignedCerts() *feature.Feature {
 
 func PatchTopologyOperatorDeployment(ctx context.Context, t feature.T) {
 	namespace := environment.FromContext(ctx).Namespace()
+	secretName := namespace + "-rabbitmq-ca"
 	deployment, err := kubeClient.Get(ctx).AppsV1().Deployments("rabbitmq-system").Get(ctx, topologyOperatorDeploymentName, metav1.GetOptions{})
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	err = wait.PollImmediate(interval, timeout, func() (bool, error) {
+		_, err = kubeClient.Get(ctx).CoreV1().Secrets("rabbitmq-system").Get(ctx, secretName, metav1.GetOptions{})
+		if err != nil {
+			if apierrors.IsNotFound(err) {
+				t.Log(namespace, secretName, "not found", err)
+				// keep polling
+				return false, nil
+			}
+			return false, err
+		}
+		return true, nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
 	// Attach the new rabbitmq-ca certificate to the deployment in a volume
 	vol := v1.Volume{
 		Name: volName,
